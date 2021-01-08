@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Event;
+namespace Lightpack\Event;
 
 class Event
 {
@@ -11,6 +11,7 @@ class Event
     {
         $this->subscribers[$eventName][] = $eventSubscriber;
     }
+
     public function unsubscribe(string $eventSubscriber): void
     {
         $eventNames = array_keys($this->subscribers);
@@ -23,6 +24,7 @@ class Event
             }
         }
     }
+
     public function notify(string $eventName)
     {
         $this->throwExceptionIfEventNotFound($eventName);
@@ -33,23 +35,27 @@ class Event
             $subscriberInstance->handle();
         }
     }
+
     public function getSubscribers()
     {
         return $this->subscribers;
     }
+
     public function setData($data = null)
     {
         $this->data = $data;
         return $this;
     }
+
     public function getData()
     {
         return $this->data;
     }
+
     private function throwExceptionIfEventNotFound(string $eventName): void
     {
         if (!isset($this->subscribers[$eventName])) {
-            throw new \Framework\Exceptions\EventNotFoundException(
+            throw new \Lightpack\Exceptions\EventNotFoundException(
                 sprintf(
                     'Event `%s` is not registered',
                     $eventName
@@ -57,10 +63,11 @@ class Event
             );
         }
     }
+    
     private function throwExceptionIfHandlerMethodNotFound(string $subscriber, object $instance): void
     {
         if(!method_exists($instance, 'handle')) {
-            throw new \Framework\Exceptions\EventHandlerMethodNotFoundException(
+            throw new \Lightpack\Exceptions\EventHandlerMethodNotFoundException(
                 sprintf(
                     'Event subscriber `%s` has not implemented handle() method.',
                     $subscriber
