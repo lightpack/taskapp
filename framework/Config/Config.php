@@ -1,8 +1,8 @@
 <?php
 
-namespace Framework\Config;
+namespace Lightpack\Config;
 
-use Framework\Exceptions\ConfigFileNotFoundException;
+use Lightpack\Exceptions\ConfigFileNotFoundException;
 
 class Config
 {
@@ -23,6 +23,7 @@ class Config
             }
         }
     }
+    
     private function loadConfig($file) {
         $filePath = DIR_CONFIG . '/' . $file . '.php';
         

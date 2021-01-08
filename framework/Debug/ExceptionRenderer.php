@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Debug;
+namespace Lightpack\Debug;
 
 use Error;
 use Exception;
@@ -104,7 +104,6 @@ class ExceptionRenderer
                 continue;
             }
 
-            // $text = trim($file[$i]);
             $text = $file[$i];
 
             if ($i == $line - 1) {
