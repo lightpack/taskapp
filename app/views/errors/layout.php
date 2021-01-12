@@ -20,8 +20,7 @@
     </head>
     <body>
         <div class="container">
-            <h2>Technical Error.</h2>
-            <p>We are facing some technical issues. We will be back soon.</p>
+            <?= app('template')->render('errors/' . $template) ?>
         </div>
     </body>
 </html>
