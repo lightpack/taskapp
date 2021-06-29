@@ -18,11 +18,11 @@ require_once __DIR__ . '/constants.php';
 
 /**
  * ------------------------------------------------------------
- * Configure Error/Exception Reporting.
+ * Configure Environment Settings
  * ------------------------------------------------------------
  */
 
-require_once DIR_BOOTSTRAP . '/debug.php';
+require_once DIR_BOOTSTRAP . '/environment.php';
 
 /**
  * ------------------------------------------------------------
@@ -31,6 +31,14 @@ require_once DIR_BOOTSTRAP . '/debug.php';
  */
 
 require_once DIR_BOOTSTRAP . '/services.php';
+
+/**
+ * ------------------------------------------------------------
+ * Configure Error/Exception Reporting.
+ * ------------------------------------------------------------
+ */
+
+require_once DIR_BOOTSTRAP . '/debug.php';
 
 /**
  * ------------------------------------------------------------

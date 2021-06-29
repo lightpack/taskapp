@@ -2,46 +2,53 @@
 
 namespace App\Controllers;
 
+use App\Models\TaskModel;
+
 class TaskController
 {
+    /**
+     * List all tasks.
+     */
     public function index()
     {
-        $data['tasks'] = app('db')->table('tasks')->fetchAll();
-
-        app('response')->render('tasks/home', $data);
+        app('response')->render('tasks/home', [
+            'tasks' => (new TaskModel)->fetchAll()
+        ]);
     }
 
-    public function add()
+    /**
+     * Show new task form.
+     */
+    public function showAddForm()
     {
-        $request = app('request');
-
-        if($request->isPost()) {
-            app('db')->table('tasks')->insert([
-                'title' => $request->post('title')
-            ]);
-
-            redirect('tasks');
-        }
-
         app('response')->render('tasks/form');
     }
 
-    public function edit($id)
+    /**
+     * Submit new task.
+     */
+    public function postAddForm()
     {
-        $data['task'] = app('db')->table('tasks')->where('id', '=', $id)->fetchOne();
-        $request = app('request');
+        (new TaskModel)->insert();
+        redirect('tasks');
+    }
 
-        if($request->isPost()) {
-            app('db')->table('tasks')->update(['id', $id], [
-                    'title' => $request->post('title'),
-                    'status' => $request->post('status')
-                ]
-            );
+    /**
+     * Show task update form.
+     */
+    public function showEditForm($id)
+    {
+        app('response')->render('tasks/form', [
+            'task' => (new TaskModel)->fetchOne($id)
+        ]);
+    }
 
-            redirect('tasks');
-        }
-
-
-        app('response')->render('tasks/form', $data);
+    /**
+     * Save task update.
+     */
+    public function postEditForm($id)
+    {
+        (new TaskModel)->update($id);
+        redirect('tasks');
     }
 }
