@@ -1,5 +1,0 @@
-2021-07-05 12:42:18 error : ErrorException: Parse error: syntax error, unexpected '');' (T_CONSTANT_ENCAPSED_STRING) in /var/www/html/lightpack/app/Controllers/HomeController.php:10
-Stack trace:
-#0 /var/www/html/lightpack/vendor/lightpack/framework/src/Framework/Debug/Handler.php(58): Lightpack\Debug\Handler->handleError(4, 'Parse error: sy...', '/var/www/html/l...', 10)
-#1 [internal function]: Lightpack\Debug\Handler->handleException(Object(ParseError))
-#2 {main}

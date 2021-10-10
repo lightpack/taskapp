@@ -6,10 +6,14 @@ use Lightpack\Database\Lucid\Model;
 
 class TaskModel extends Model
 {
-    public function __construct()
-    {
-        parent::__construct('tasks');
-    }
+    /** @inheritDoc */
+    protected $table = 'tasks';
+
+    /** @inheritDoc */
+    protected $primaryKey = 'id';
+
+    /** @inheritDoc */
+    protected $timestamps = false;
 
     public function fetchAll()
     {
@@ -30,7 +34,7 @@ class TaskModel extends Model
 
     public function update($id)
     {
-        $this->query()->update(['id', $id], [
+        $this->query()->where('id', '=', $id)->update([
             'title' => app('request')->post('title'),
             'status' => app('request')->post('status'),
         ]);
