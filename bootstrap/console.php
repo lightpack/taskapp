@@ -1,14 +1,41 @@
 <?php
 
+/**
+ * ------------------------------------------------------------
+ * Require Defined Constants
+ * ------------------------------------------------------------
+ */
+
 require_once __DIR__ . '/constants.php';
 
-use Lightpack\Console\Console;
+/**
+ * ------------------------------------------------------------
+ * Configure Environment Settings
+ * ------------------------------------------------------------
+ */
+
+require_once DIR_BOOTSTRAP . '/environment.php';
 
 /**
- * Register application specific console commands.
+ * ------------------------------------------------------------
+ * Bind Providers in IoC Container.
+ * ------------------------------------------------------------
  */
-$consoleConfig = require_once DIR_CONFIG  . '/console.php';
 
-foreach ($consoleConfig as $command => $handler) {
-    Console::register($command, new $handler);
-}
+require_once DIR_BOOTSTRAP . '/providers.php';
+
+/**
+ * ------------------------------------------------------------
+ * Discover app events.
+ * ------------------------------------------------------------
+ */
+
+require_once DIR_BOOTSTRAP . '/events.php';
+
+/**
+ * ------------------------------------------------------------
+ * Register application specific console commands.
+ * ------------------------------------------------------------
+ */
+
+require_once DIR_BOOTSTRAP . '/commands.php';

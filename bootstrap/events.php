@@ -1,11 +1,12 @@
 <?php
 
 /**
- * Register app events.
+ * ------------------------------------------------------------
+ * Subscribe to app events.
+ * ------------------------------------------------------------
  */
-$events = $container->get('config')->get('events');
 
-foreach ($events as $event => $listeners) {
+foreach (config('events') as $event => $listeners) {
     foreach ($listeners as $listener) {
         $container->get('event')->subscribe($event, $listener);
     }
