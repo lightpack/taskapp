@@ -41,8 +41,10 @@ class TaskController
      */
     public function showEditForm($id)
     {
+        $task = new TaskModel($id);
+
         response()->render('tasks/form', [
-            'task' => TaskModel::query()->where('id', '=', $id)->one(),
+            'task' => $task,
         ]);
     }
 
