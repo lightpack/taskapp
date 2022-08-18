@@ -1,31 +1,23 @@
-<p>
-    <a href="https://travis-ci.com/lightpack/framework">
-        <img src="https://travis-ci.com/lightpack/framework.svg?branch=main" alt="Build Status">
-    </a>
-    <a href="https://packagist.org/packages/lightpack/framework">
-        <img src="https://img.shields.io/packagist/l/lightpack/framework" alt="License">
-    </a>
-    <a href="https://packagist.org/packages/lightpack/framework">
-        <img src="https://img.shields.io/packagist/v/lightpack/framework" alt="Latest Release">
-    </a>
-</p>
+# TaskApp: Lightpack
 
-# Lightpack
-
-[LightPack - PHP Web Framework](https://lightpack.github.io)
-
-This is an alpha release not meant to be used in production yet.
+Sample tutorial app for Lightpack PHP web framework.
 
 **Quick Install** 
 
 Clone the Lightpack repository into your project web root directory.
 
-`git clone https://github.com/lightpack/lightpack.git`
+`git clone https://github.com/lightpack/taskapp.git`
 
 Now run the composer command.
 
-`composer install --no-dev`
+`composer install --no-dev -v`
 
-**Note**: To view progress details while composer install, add `-vvv` option as shown below.
+**Environment**
 
-`composer install --no-dev -vvv`
+Copy the `env.example.php` file to `env.php` and update the required configurations.
+
+**Running the app**
+
+Inside the projects root directory run the following command:
+
+`php -S localhost:8080 -t public`
