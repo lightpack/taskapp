@@ -11,8 +11,10 @@ class TaskController
      */
     public function index()
     {
-        app('response')->render('tasks/home', [
-            'tasks' => (new TaskModel)->fetchAll()
+        $tasks = TaskModel::query()->all();
+
+        response()->render('tasks/index', [
+            'tasks' => $tasks
         ]);
     }
 
@@ -21,7 +23,7 @@ class TaskController
      */
     public function showAddForm()
     {
-        app('response')->render('tasks/form');
+        response()->render('tasks/form');
     }
 
     /**
@@ -29,7 +31,10 @@ class TaskController
      */
     public function postAddForm()
     {
-        (new TaskModel)->insert();
+        TaskModel::query()->insert([
+            'title' => app('request')->post('title'),
+        ]);
+
         redirect('tasks');
     }
 
@@ -38,8 +43,8 @@ class TaskController
      */
     public function showEditForm($id)
     {
-        app('response')->render('tasks/form', [
-            'task' => (new TaskModel)->fetchOne($id)
+        response()->render('tasks/form', [
+            'task' => TaskModel::query()->where('id', '=', $id)->one(),
         ]);
     }
 
@@ -48,7 +53,11 @@ class TaskController
      */
     public function postEditForm($id)
     {
-        (new TaskModel)->update($id);
+        TaskModel::query()->where('id', '=', $id)->update([
+            'title' => app('request')->post('title'),
+            'status' => app('request')->post('status'),
+        ]);
+
         redirect('tasks');
     }
 }

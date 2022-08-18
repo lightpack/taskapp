@@ -14,4 +14,4 @@ route()->get('/tasks', TaskController::class);
 route()->get('/tasks/add', TaskController::class, 'showAddForm');
 route()->post('/tasks/add', TaskController::class, 'postAddForm');
 route()->get('/tasks/edit/:num', TaskController::class, 'showEditForm');
-route()->post('/tasks/edit/:num', TaskController::class, 'postEditForm');
+route()->post('/tasks/edit/:num', TaskContro\ller::class, 'postEditForm');

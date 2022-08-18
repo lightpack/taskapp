@@ -6,11 +6,15 @@
     <!-- Status -->
     <?php if ($task->status ?? null) : ?>
         <select name="status">
-            <?php foreach (['Done', 'Pending'] as $status) : ?>
+
+            <?php foreach (['done', 'pending'] as $status) : ?>
+
                 <option <?= $task->status == $status ? 'selected' : '' ?>>
                     <?= $status ?>
                 </option>
+
             <?php endforeach; ?>
+
         </select>
     <?php endif; ?>
 
