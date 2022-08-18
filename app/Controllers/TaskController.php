@@ -11,11 +11,9 @@ class TaskController
      */
     public function index()
     {
-        $data = [
+        response()->render('tasks/index', [
             'tasks' => TaskModel::query()->all(),
-        ];
-
-        response()->render('tasks/index', $data);
+        ]);
     }
 
     /**
@@ -31,11 +29,9 @@ class TaskController
      */
     public function postAddForm()
     {
-        $data = [
-            'title' => request()->post('title'),
-        ];
-
-        TaskModel::query()->insert($data);
+        $task = new TaskModel();
+        $task->title = request()->post('title');
+        $task->save();
 
         redirect('tasks');
     }
@@ -45,11 +41,9 @@ class TaskController
      */
     public function showEditForm($id)
     {
-        $data = [
+        response()->render('tasks/form', [
             'task' => TaskModel::query()->where('id', '=', $id)->one(),
-        ];
-
-        response()->render('tasks/form', $data);
+        ]);
     }
 
     /**
@@ -57,12 +51,10 @@ class TaskController
      */
     public function postEditForm($id)
     {
-        $data = [
-            'title' => request()->post('title'),
-            'status' => request()->post('status'),
-        ];
-
-        TaskModel::query()->where('id', '=', $id)->update($data);
+        $task = new TaskModel($id);
+        $task->title = request()->post('title');
+        $task->status = request()->post('status');
+        $task->save();
 
         redirect('tasks');
     }
