@@ -30,7 +30,7 @@ class TaskController
     public function postAddForm()
     {
         $task = new TaskModel();
-        $task->title = request()->post('title');
+        $task->title = request()->input('title');
         $task->save();
 
         return redirect()->to('tasks');
@@ -54,8 +54,8 @@ class TaskController
     public function postEditForm($id)
     {
         $task = new TaskModel($id);
-        $task->title = request()->post('title');
-        $task->status = request()->post('status');
+        $task->title = request()->input('title');
+        $task->status = request()->input('status');
         $task->save();
 
         return redirect()->to('tasks');

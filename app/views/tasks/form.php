@@ -23,4 +23,4 @@
 
 </form>
 
-<a href="<?= url("tasks") ?>">Cancel</a>
+<a href="<?= url()->to("tasks") ?>">Cancel</a>
