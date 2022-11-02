@@ -3,7 +3,7 @@
         <li>
             <?= $task->title ?> :
             <?= $task->status ?>
-            <a href="<?= url('tasks/edit', $task->id) ?>">
+            <a href="<?= url()->to('tasks/edit', $task->id) ?>">
                 Edit
             </a>
         </li>
@@ -12,6 +12,6 @@
 
 <hr>
 
-<a href="<?= url('tasks/add') ?>">
+<a href="<?= url()->to('tasks/add') ?>">
     + New Task
 </a>
