@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\TaskModel;
+use App\Models\Task;
 
 class TaskController
 {
@@ -12,7 +12,7 @@ class TaskController
     public function index()
     {
         return response()->view('tasks/index', [
-            'tasks' => TaskModel::query()->all(),
+            'tasks' => Task::query()->all(),
         ]);
     }
 
@@ -29,7 +29,7 @@ class TaskController
      */
     public function postAddForm()
     {
-        $task = new TaskModel();
+        $task = new Task();
         $task->title = request()->input('title');
         $task->save();
 
@@ -41,7 +41,7 @@ class TaskController
      */
     public function showEditForm($id)
     {
-        $task = new TaskModel($id);
+        $task = new Task($id);
 
         return response()->view('tasks/form', [
             'task' => $task,
@@ -53,7 +53,7 @@ class TaskController
      */
     public function postEditForm($id)
     {
-        $task = new TaskModel($id);
+        $task = new Task($id);
         $task->title = request()->input('title');
         $task->status = request()->input('status');
         $task->save();
