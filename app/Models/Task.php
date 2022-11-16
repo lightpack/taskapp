@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Lightpack\Database\Lucid\Model;
 
-class TaskModel extends Model
+class Task extends Model
 {
     /** @inheritDoc */
     protected $table = 'tasks';
